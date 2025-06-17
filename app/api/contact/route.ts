@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { supabase } from "@/lib/supabase"
 
 export async function POST(request: Request) {
   try {
@@ -9,11 +10,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Name, email, and message are required" }, { status: 400 })
     }
 
-    // Store in database (this would be replaced with your actual database code)
-    console.log("Contact form submission:", data)
+    // Insert message into Supabase
+    const { error } = await supabase
+      .from('messages')
+      .insert({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        created_at: new Date().toISOString()
+      })
 
-    // For now, we'll just return success
-    // In a real implementation, you would store this in a database
+    if (error) {
+      console.error("Supabase error:", error)
+      return NextResponse.json({ error: "Failed to save message" }, { status: 500 })
+    }
+
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Error processing contact form:", error)

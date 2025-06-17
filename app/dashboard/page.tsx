@@ -5,47 +5,53 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Trash2 } from "lucide-react"
 import Link from "next/link"
+import { supabase } from "@/lib/supabase"
 
 interface Message {
   id: string
   name: string
   email: string
   message: string
-  createdAt: string
+  created_at: string
 }
 
 export default function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([])
   const [loading, setLoading] = useState(true)
 
-  // In a real app, this would fetch from your database
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      // Mock data - in a real app this would come from your database
-      setMessages([
-        {
-          id: "1",
-          name: "John Doe",
-          email: "john@example.com",
-          message: "I'm interested in hiring you for a project. Can we schedule a call?",
-          createdAt: new Date().toISOString(),
-        },
-        {
-          id: "2",
-          name: "Jane Smith",
-          email: "jane@example.com",
-          message: "Your portfolio is impressive! I'd like to discuss a potential internship opportunity.",
-          createdAt: new Date(Date.now() - 86400000).toISOString(),
-        },
-      ])
-      setLoading(false)
-    }, 1000)
+    const fetchMessages = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('messages')
+          .select('*')
+          .order('created_at', { ascending: false })
+
+        if (error) throw error
+        setMessages(data || [])
+      } catch (error) {
+        console.error('Error fetching messages:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchMessages()
   }, [])
 
-  const handleDelete = (id: string) => {
-    // In a real app, this would call an API endpoint to delete the message
-    setMessages(messages.filter((message) => message.id !== id))
+  const handleDelete = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('messages')
+        .delete()
+        .eq('id', id)
+
+      if (error) throw error
+      
+      setMessages(prev => prev.filter(msg => msg.id !== id))
+    } catch (error) {
+      console.error('Error deleting message:', error)
+    }
   }
 
   return (
