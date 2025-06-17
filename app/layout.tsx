@@ -4,9 +4,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
-  title: "CS Portfolio",
-  description: "Portfolio for a Computer Science Student",
-    generator: 'v0.dev'
+  title: "Rohan Shah",
+  description: "Welcome to my portfolio"
 }
 
 export default function RootLayout({
