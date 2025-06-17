@@ -351,7 +351,7 @@ export default function Portfolio() {
               onMouseEnter={() => enterButton("Download CV")}
               onMouseLeave={leaveButton}
               onClick={() => {
-                window.open('/resumresumee.pdf', '_blank');
+                window.open('/resume.pdf', '_blank');
               }}
             >
               Download CV
