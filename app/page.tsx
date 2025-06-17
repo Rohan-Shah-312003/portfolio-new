@@ -616,7 +616,8 @@ export default function Portfolio() {
                     <div className="flex items-center">
                       <Github className="h-5 w-5 mr-3 text-zinc-400" />
                       <a
-                        href="#"
+                        href="https://github.com/Rohan-Shah-312003"
+                        target="_blank"
                         className="hover:text-purple-400 transition-colors"
                       >
                         github.com/Rohan-Shah-312003
@@ -626,6 +627,7 @@ export default function Portfolio() {
                       <Linkedin className="h-5 w-5 mr-3 text-zinc-400" />
                       <a
                         href="https://www.linkedin.com/in/aokira31/"
+                        target="_blank"
                         className="hover:text-purple-400 transition-colors"
                       >
                         linkedin.com/in/aokira31
