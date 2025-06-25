@@ -223,12 +223,12 @@ export default function Portfolio() {
       link: "https://github.com/Rohan-Shah-312003/pitch-shifter",
     },
     {
-      title: "Expense Tracker",
+      title: "Whiteboard For Code",
       description:
-        "Keep track of your expenses, completely off the internet, and transfer it from one device to another using qr codes.",
+        "A .vsix extension which opens a whiteboard natively in your editor (VSCode/Windsurf/Cursor) for brainstorming while coding without needing for unnecessary context switching.",
       tags: ["NextJS", "Node.js", "Tailwind CSS"],
       color: "from-orange-500 to-amber-500",
-      link: "https://github.com/Rohan-Shah-312003/expense-tracker-web",
+      link: "https://github.com/Rohan-Shah-312003/whiteboard-for-code",
     },
   ];
 
@@ -352,7 +352,7 @@ export default function Portfolio() {
               onMouseEnter={() => enterButton("Download CV")}
               onMouseLeave={leaveButton}
               onClick={() => {
-                window.open('/resume.pdf', '_blank');
+                window.open("/resume.pdf", "_blank");
               }}
             >
               Download CV
