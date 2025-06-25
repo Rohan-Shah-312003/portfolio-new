@@ -233,6 +233,7 @@ export default function Portfolio() {
   ];
 
   const skills = [
+    { name: "Java", icon: <Code className="h-6 w-6" />, level: 98 },
     { name: "JavaScript", icon: <Code className="h-6 w-6" />, level: 90 },
     { name: "React", icon: <Zap className="h-6 w-6" />, level: 90 },
     { name: "Python", icon: <Terminal className="h-6 w-6" />, level: 80 },
